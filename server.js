@@ -127,6 +127,12 @@ export default function(opt) {
     server.on('request', (req, res) => {
         // without a hostname, we won't know who the request is for
         const hostname = req.headers.host;
+	const filepath = '.'+req.url;
+	if (filepath=='./health.html') {
+          res.writeHead(200);
+          res.end('<b>success</b>', 'utf-8');
+	  return;
+        }
         if (!hostname) {
             res.statusCode = 400;
             res.end('Host header is required');
