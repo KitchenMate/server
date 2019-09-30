@@ -3,13 +3,16 @@ import Koa from 'koa';
 import tldjs from 'tldjs';
 import Debug from 'debug';
 import http from 'http';
-import { hri } from 'human-readable-ids';
+import fs from 'fs';
+import humanReadableIds from 'human-readable-ids';
 import Router from 'koa-router';
 
-import ClientManager from './lib/ClientManager';
+import ClientManager from './lib/ClientManager.js';
 
 const debug = Debug('localtunnel:server');
 
+let hri = humanReadableIds.hri;
+console.log(hri);
 export default function(opt) {
     opt = opt || {};
 
@@ -113,6 +116,10 @@ export default function(opt) {
         return;
     });
 
+    //const privateKey = fs.readFileSync('../ssl/server.key');
+    //const certificate = fs.readFileSync('../ssl/server.crt');
+    //console.log("CREATING CERT:", certificate);
+    //const server = http.createServer({key: privateKey, cert: certificate});
     const server = http.createServer();
 
     const appCallback = app.callback();
