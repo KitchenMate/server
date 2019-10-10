@@ -1,5 +1,12 @@
 # KitchenMate
 
+To stop (or check if running):
+```
+ssh kitchenmate.dev
+sudo su
+screen -r
+```
+
 To start:
 ```
 ssh kitchenmate.dev
